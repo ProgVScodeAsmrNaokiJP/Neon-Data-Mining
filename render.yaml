@@ -5,7 +5,7 @@ services:
   - type: web
     name: neon-data-mining
     runtime: python
-    plan: starter            # 常時稼働＝スリープ無し（落ちにくい）。無料枠は15分でスリープするので非推奨
+    plan: free            # 常時稼働＝スリープ無し（落ちにくい）。無料枠は15分でスリープするので非推奨
     region: singapore        # 日本向けは singapore が近い（必要なら oregon 等に変更）
     startCommand: python server.py
     healthCheckPath: /api/health
