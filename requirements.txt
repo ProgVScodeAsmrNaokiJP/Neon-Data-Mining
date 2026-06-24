@@ -1,0 +1,2 @@
+# NEON DATA MINING server — Python標準ライブラリのみで動作（追加依存なし）
+# このファイルは Render に Python アプリだと認識させるために置いています。

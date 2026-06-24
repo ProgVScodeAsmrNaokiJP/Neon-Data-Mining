@@ -1,0 +1,23 @@
+# Render Blueprint — NEON DATA MINING ワールドサーバー
+# 使い方: このリポジトリを Render で「New +」→「Blueprint」から取り込むだけ。
+# 必要ファイル: server.py / game_server.html / account.html / requirements.txt / render.yaml
+services:
+  - type: web
+    name: neon-data-mining
+    runtime: python
+    plan: starter            # 常時稼働＝スリープ無し（落ちにくい）。無料枠は15分でスリープするので非推奨
+    region: singapore        # 日本向けは singapore が近い（必要なら oregon 等に変更）
+    startCommand: python server.py
+    healthCheckPath: /api/health
+    autoDeploy: true         # git push で自動再デプロイ
+    envVars:
+      - key: NDM_DATA_DIR    # ランキング等の保存先＝永続ディスク
+        value: /var/data
+      - key: NDM_STATIC_DIR  # game_server.html / account.html の配信元（リポジトリ直下）
+        value: .
+      - key: NDM_ADMIN_PW    # 管理パスワード。値はダッシュボードで設定（リポジトリに残さない）
+        sync: false
+    disk:
+      name: neon-data        # 再デプロイしてもデータが消えない永続ディスク
+      mountPath: /var/data
+      sizeGB: 1
