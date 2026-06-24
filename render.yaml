@@ -17,7 +17,4 @@ services:
         value: .
       - key: NDM_ADMIN_PW    # 管理パスワード。値はダッシュボードで設定（リポジトリに残さない）
         sync: false
-    disk:
-      name: neon-data        # 再デプロイしてもデータが消えない永続ディスク
-      mountPath: /var/data
-      sizeGB: 1
+    
